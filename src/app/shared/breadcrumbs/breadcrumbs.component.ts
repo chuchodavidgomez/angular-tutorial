@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivationEnd } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
-import { Title, Meta } from '@angular/platform-browser';
+import { Title, Meta, MetaDefinition } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-breadcrumbs',
@@ -17,6 +17,13 @@ export class BreadcrumbsComponent implements OnInit {
       this.titulo = data.titulo;
       this.title.setTitle(this.titulo);
     });
+
+    const metaTag: MetaDefinition = {
+      name: 'description',
+      content: this.titulo
+    };
+
+    this.meta.updateTag(metaTag);
   }
 
   ngOnInit() {
